@@ -13,7 +13,7 @@ interface IERC20 {
   event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 interface IPOOL {
-  function dposit(IERC20 erc20,uint amount) external;
+  function deposit(IERC20 erc20,uint amount) external;
   function withdraw(IERC20 erc20,uint amount,address to) external;
   function approve(IERC20 erc20,uint amount) external;
 }
@@ -46,7 +46,7 @@ contract TradingCenter {
   function dispose(IERC20 erc20,uint amount) public nonReentrant {
     require(address(erc20)== address(usdc) || address(erc20)== address(usdt));
     erc20.transferFrom(msg.sender, address(this), amount);
-    IPOOL(pool).dposit(erc20, amount);
+    IPOOL(pool).deposit(erc20, amount);
   }
 
   function withdraw(IERC20 erc20,uint amount) public nonReentrant{

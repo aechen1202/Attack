@@ -24,7 +24,7 @@ contract pool {
      }
   }
 
-  function dposit(IERC20 erc20,uint amount) public {
+  function deposit(IERC20 erc20,uint amount) public {
     balance[address(erc20)][tx.origin] += amount;
     erc20.transferFrom(msg.sender, address(this), amount);
   }
